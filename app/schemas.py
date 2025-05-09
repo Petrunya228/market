@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List
-from uuid import UUID
+from uuid import uuid4
 from datetime import datetime
 from enum import Enum
 
@@ -12,7 +12,7 @@ class NewUser(BaseModel):
     name: str = Field(..., min_length=3)
 
 class UserOut(BaseModel):
-    id: UUID
+    id: str  # Заменили UUID на str
     name: str
     api_key: str
     role: UserRole
@@ -40,10 +40,10 @@ class LimitOrderBody(MarketOrderBody):
 
 class CreateOrderResponse(BaseModel):
     success: bool = True
-    order_id: UUID
+    order_id: str  # Заменили UUID на str
 
 class OrderOut(BaseModel):
-    id: UUID
+    id: str  # Заменили UUID на str
     timestamp: datetime
     ticker: str
     qty: int
@@ -65,3 +65,7 @@ class InstrumentIn(BaseModel):
 class InstrumentOut(InstrumentIn):
     class Config:
         orm_mode = True
+
+class TradingInstrumentCreate(BaseModel):
+    name: str
+    symbol: str

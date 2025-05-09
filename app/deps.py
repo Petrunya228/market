@@ -10,7 +10,6 @@ def get_db():
     finally:
         db.close()
 
-
 def get_current_user(authorization: str = Header(...), db: Session = Depends(get_db)) -> models.User:
     if not authorization.startswith("TOKEN "):
         raise HTTPException(status_code=403, detail="Invalid token format")

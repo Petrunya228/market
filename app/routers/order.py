@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from uuid import uuid4
 from app import models, schemas
 from app.deps import get_current_user, get_db
+from typing import Union
 
 router = APIRouter()
 
